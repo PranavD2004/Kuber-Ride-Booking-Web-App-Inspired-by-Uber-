@@ -49,7 +49,7 @@ const UserLogin = () => {
     <div className="p-7 flex flex-col justify-between min-h-screen">
       <div>
         <img
-          className="w-40 mb-6"
+          className="w-40 mb-6 bg-white"
           src={Li}
           alt="Uber Logo"
         />

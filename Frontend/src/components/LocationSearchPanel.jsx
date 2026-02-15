@@ -18,11 +18,11 @@ const LocationSearchPanel = (props) => {
           key={index}
           onClick={() => {
             setSelectedLocation(elem);
-            props.setVehiclePanelOpen?.(true);
+            props.setVehiclePanelOpen(true);
           }}
           className={`flex gap-4 border-2 p-3 rounded-xl items-center my-2 justify-start cursor-pointer
             ${
-              selectedLocation === elem9
+              selectedLocation === elem
                 ? "border-black bg-gray-100"
                 : "border-gray-300"
             }
