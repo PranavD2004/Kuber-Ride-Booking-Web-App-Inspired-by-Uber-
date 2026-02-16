@@ -12,6 +12,7 @@ import CaptainHome from './pages/CaptainHome';
 import CaptainProtectWrapper from "./pages/CaptainProtectWrapper";
 import LocationSearchPanel from '../src/components/LocationSearchPanel';
 import Riding from '../src/pages/Riding';
+import CaptainDetails from "./components/CaptainDetails"
 
 
 const App=() =>{

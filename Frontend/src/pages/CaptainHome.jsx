@@ -1,9 +1,76 @@
-import React from 'react'
- 
-const CaptainHome =() =>{
-  return(
-    <div>CaptainHome</div>
+import React,{useState, useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { Link } from 'react-router-dom';
+import Log from "../assets/home-bg.jpg"
+import CaptainDetails from "../components/CaptainDetails"
+import ConfirmRidePopUp from "../components/ConfirmRidePopUp"
+// import CaR from "../assets/uber-go.jpg"
+import Hl from '../assets/home-logo.jpg';
+import RidePopUp from "../components/RidePopUp";
+
+
+const CaptainHome=()=>{
+const [ridePopUpPanel,setRidePopUpPanel]=useState(true) 
+const [ConfirmRidePopupPanel,setConfirmRidePopupPanel]=useState(false) 
+const ridePopupPanelRef=useRef(null)
+const confirmRidePopupPanelRef=useRef(null)
+
+ useGSAP(function () {
+   if (ridePopUpPanel) {
+    gsap.to(ridePopupPanelRef.current, {
+    transform: 'translateY(0)'
+        })
+      } else {
+          gsap.to(ridePopupPanelRef.current, {
+          transform: 'translateY(100%)'
+        })
+      }
+  }, [ ridePopUpPanel ])
+
+useGSAP (function () {
+if (ConfirmRidePopupPanel) {
+gsap.to (confirmRidePopupPanelRef.current, {
+transform: 'translateY(0)'
+})
+} else {
+gsap.to(confirmRidePopupPanelRef.current, {
+transform: 'translateY(100%)'
+})
+}
+}, [ConfirmRidePopupPanel])
+
+
+  
+return(
+<div className='h-screen'>  
+<div className='fixed p-6 top-0 flez items-center justify-between w-screen '>
+   <img className='w-16 ' src={Hl}/>
+  <Link to='/home' className='fixed h-10 w-10 bg-white flex items-center justify-center rounded-full'>
+<i className="ri-logout-box-r-line"></i>
+</Link> 
+  </div> 
+<div className='h-3/5'>
+<img className='h-full w-full object-cover' src={Log} />
+</div>
+
+<div className='h-2/5 p-6'>
+<CaptainDetails/>
+ </div>
+
+  <div ref={ridePopupPanelRef}   className='fixed w-full z-10 bg-white bottom-0 px-3 py-10 pt-12 translate-y-full'>
+          <RidePopUp setRidePopupPanel={setRidePopUpPanel}
+          setConfirmRidePopPanel={setConfirmRidePopupPanel} 
+          /></div>
+
+  <div ref={confirmRidePopupPanelRef}   className='fixed w-full z-10 bg-white bottom-0 px-3 py-10 pt-12 translate-y-full'>
+          <ConfirmRidePopUp setConfirmRidePopPanel={setConfirmRidePopupPanel}
+          setRidePopPanel={setRidePopUpPanel}/>
+        </div>
+</div>
+  
+
   )
 }
 
-export default CaptainHome
+export default CaptainHome;

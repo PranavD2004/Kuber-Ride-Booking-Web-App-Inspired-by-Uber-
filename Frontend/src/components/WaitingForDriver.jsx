@@ -9,7 +9,7 @@ const WaitingForDriver=(props)=>{
            onClick={()=>{
               props.waitingForDriver(false)}}></i></h5>
 
-          <div className='flex items-center justify-between'>
+  <div className='flex items-center justify-between'>
              <img className='h-25 ' src={Carr}/>
          <div className='text-right'>
          <h2 className='text-lg font-medium'>Sarthak</h2>
