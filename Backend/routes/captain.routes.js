@@ -11,7 +11,7 @@ router.post('/register',[
   body('vehicle.color').isLength({ min: 3 }).withMessage('Color must be at least 3 characters'),
   body('vehicle.plate').isLength({ min: 3}).withMessage('Plate must be at least 3 characters'),
   body('vehicle.capacity').isInt({ min: 1 }).withMessage('Capacity must be at least 1 sit of passenger'),
-  body('vehicle.vehicleType').isIn(['car','motorcycle','auto']).withMessage('Invalid vehicle type')
+  body('vehicle.vehicleType').isIn(['car','moto','auto']).withMessage('Invalid vehicle type')
 ],
 captainController.registerCaptain
 );
@@ -30,7 +30,7 @@ router.post('/profile',[
   body('vehicle.color').isLength({ min: 3 }).withMessage('Color must be at least 3 characters'),
   body('vehicle.plate').isLength({ min: 3}).withMessage('Plate must be at least 3 characters'),
   body('vehicle.capacity').isInt({ min: 1 }).withMessage('Capacity must be at least 1 sit of passenger'),
-  body('vehicle.vehicleType').isIn(['car','motorcycle','auto']).withMessage('Invalid vehicle type')
+  body('vehicle.vehicleType').isIn(['car','moto','auto']).withMessage('Invalid vehicle type')
 ],
 captainController.registerCaptain
 );

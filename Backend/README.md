@@ -750,3 +750,87 @@ Server will run on `http://localhost:4000` (or the port specified in `.env`)
   updatedAt: Date (auto)
 }
 ```
+...
+### GET /rides/get-fare
+
+#### Description
+Calculates the estimated fare for a ride based on the pickup and destination addresses.
+
+#### URL
+```
+GET http://localhost:4000/rides/get-fare
+```
+
+#### Request Headers
+```
+Authorization: Bearer <JWT_TOKEN>
+```
+
+#### Query Parameters
+| Parameter     | Type   | Required | Description                          |
+|---------------|--------|----------|--------------------------------------|
+| `pickup`      | string | Yes      | The pickup address (min length: 3). |
+| `destination` | string | Yes      | The destination address (min length: 3). |
+
+#### Success Response
+
+**Status Code:** `200 OK`
+
+```json
+{
+  "auto": 50.75,
+  "car": 120.50,
+  "moto": 30.25,
+  "distance": "10.5 km",
+  "duration": "25 min"
+}
+```
+
+#### Error Responses
+
+##### Validation Error - 400 Bad Request
+
+**Status Code:** `400 Bad Request`
+
+```json
+{
+  "errors": [
+    {
+      "type": "field",
+      "value": "",
+      "msg": "Invalid pickup address",
+      "path": "pickup",
+      "location": "query"
+    },
+    {
+      "type": "field",
+      "value": "",
+      "msg": "Invalid destination address",
+      "path": "destination",
+      "location": "query"
+    }
+  ]
+}
+```
+
+##### Unauthorized - 401 Unauthorized
+
+**Status Code:** `401 Unauthorized`
+
+```json
+{
+  "message": "Unauthorized"
+}
+```
+
+##### Internal Server Error - 500 Internal Server Error
+
+**Status Code:** `500 Internal Server Error`
+
+```json
+{
+  "message": "An error occurred while calculating the fare"
+}
+```
+
+---
